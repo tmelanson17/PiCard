@@ -1,3 +1,9 @@
+"""
+	Not used!!!
+	
+	Simple UDP Server to send 1 frame under 65507 bytes to a client
+"""
+
 from SimpleCV import *
 import numpy as np
 import socket, pygame

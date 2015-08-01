@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.anthonyalves.sandbox.util.Livestream;
 import com.anthonyalves.sandbox.util.TCPClient;
 import com.anthonyalves.sandbox.util.UDPClient;
 
@@ -41,7 +42,8 @@ public class MainActivity extends ActionBarActivity {
             If you want to use this class, you will have to change the IP to the
             local IP of the Raspi and the port that python script is running on.
          */
-        new UDPClient(getApplicationContext()).execute("173.78.123.74", 8675, "360p"); // also run the client on a separate thread
+        new Livestream(getApplicationContext()).execute("173.78.123.74", 8675, "240p"); // also run the client on a separate thread
+        //new UDPClient(getApplicationContext()).execute("173.78.123.74", 8675, "240p"); // also run the client on a separate thread
         //new TCPClient(getApplicationContext()).execute("173.78.123.74", 8675, "720p"); // also run the client on a separate thread
 
 

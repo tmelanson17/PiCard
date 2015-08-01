@@ -1,3 +1,8 @@
+"""
+	Not used!!!
+	
+	Send any size livestream to a connect client
+"""
 from SimpleCV import *
 import numpy as np
 import socket, pygame, math, sys
@@ -57,8 +62,8 @@ else:
 print 'Connection address:', addr, " @", res, ":"
 
 capture = cv2.VideoCapture(0)
-capture.set(cv.CV_CAP_PROP_FRAME_WIDTH, y)
-capture.set(cv.CV_CAP_PROP_FRAME_HEIGHT, x)
+capture.set(cv.CV_CAP_PROP_FRAME_WIDTH, x)
+capture.set(cv.CV_CAP_PROP_FRAME_HEIGHT, y)
 
 #clock to calculate FPS
 clock = pygame.time.Clock()
@@ -95,7 +100,6 @@ while 1:
 				 ]
 
 		packet = "".join(header)
-		print "Frame: " + str(frameCount) + " Chunk " + str(i+1) + "/" + str(chunks)
 		data = bytearray()
 		data.extend(packet)
 		data.extend(imgString[index: index+chunkSize])
@@ -104,7 +108,7 @@ while 1:
 	
 	# FPS meter
 	clock.tick()
-	print "FPS: " + str(clock.get_fps()) + "\tImage Size: " + str(imgSize) + " KB"
+	print "FPS:", clock.get_fps(), "\tImage Size:", imgSize, "KB", "Chunks", chunks
 	
 
 # When everything done, release the capture
