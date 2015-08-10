@@ -1,0 +1,27 @@
+http://weworkweplay.com/play/automatically-connect-a-raspberry-pi-to-a-wifi-network/
+
+Open Wi-Fi: # Not sure if it sticks on boot...
+	$ iwconfig
+
+	$ iwlist wlan0 scan
+
+	$ sudo iwconfig wlan0 essid NETWORK_ID
+	$ sudo dhclient wlan0
+	
+Secure # sticks on boot. Refer to the source URL for different secure network configurations
+	$ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+
+			# secure
+			network={
+				ssid="YourSSID"
+				psk="password"
+			}
+			
+			# open
+			network={
+				ssid="yourNetworkSSID"
+				key_mgmt=NONE
+			}
+	
+	$ sudo ifdown wlan0
+	$ sudo ifup wlan0
