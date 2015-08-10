@@ -1,0 +1,25 @@
+http://weworkweplay.com/play/automatically-connect-a-raspberry-pi-to-a-wifi-network/
+http://raspberrypi.stackexchange.com/questions/13861/setting-up-ssh-over-internet-on-my-pi
+
+First we have to get the Local IP of the Pi, Mask, and Gateway..
+
+NOTE: IF YOU ARE USING ETHERNET INSTEAD OF A WIFI ADAPTER, CHANGE SWITCH 'wlan0' WITH 'eth0'
+THROUGHOUT THE GUIDE
+
+
+	# Retrieve the local IP and Mask using ifconfig in the wlan0 section
+	$ ifconfig
+		inet addr – 130.108.202.2 (Pi's Current IP Address)
+		Mask:255.255.252.0
+	
+	# Get the Gateway with netstat
+	$ netstat -nr
+		Gateway 130.108.200.1 
+		
+	# Change the 'iface wlan0 inet dhcp' section to the example below.
+	# Note the change of 'dhcp' to 'static'
+	$ sudo nano /etc/network/interfaces
+		iface wlan0 inet static
+		address XXX.XXX.XXX.XXX # Static IP you want 
+		netmask XXX.XXX.XXX.XXX
+		gateway XXX.XXX.XXX.XXX   # IP of your router	

@@ -1,0 +1,36 @@
+https://www.raspberrypi.org/documentation/usage/camera/README.md
+	First, enable the Camera Module in raspi-config
+	
+	$ sudo raspi-config
+	Select Enable camera and hit Enter,
+	then go to Finish and you'll be prompted to reboot.
+
+
+http://www.ics.com/blog/raspberry-pi-camera-module
+	# Get the latest Raspbian packages
+    $ sudo apt-get update
+    $ sudo apt-get upgrade
+
+    # Get the latest firmware
+    $ sudo rpi-update
+
+    # Get the source code for the V4L utilities
+    $ git clone git://git.linuxtv.org/v4l-utils.git
+    $ cd v4l-utils
+
+    # Install some packages needed to build it
+    $ sudo apt-get install autoconf gettext libtool libjpeg62-dev
+
+    # Configure and build it.
+    $ autoreconf -vfi   	(IF YOU GET AN ERROR, TRY './bootstrap.sh' instead)
+    $ ./configure
+	$ make				(if you get an error about clock_getttime, http://stackoverflow.com/a/26497888 , run:
+						$ LDFLAGS=-lrt ./configure
+						$ make
+						) 
+
+    $ sudo make install
+	
+	
+	# To start the camera module, you may have to retype this command on boot
+	$ sudo modprobe bcm2835-v4l2
